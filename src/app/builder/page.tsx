@@ -269,6 +269,22 @@ export default function PCBuilder() {
         </GlassCard>
       </div>
 
+      {/* Mobile Sticky Build Bar */}
+      {totalItemsSelected > 0 && (
+        <div className="lg:hidden fixed bottom-16 left-0 right-0 z-35 bg-brand-black/90 border-t border-brand-glass-border p-4 flex items-center justify-between backdrop-blur-xl">
+          <div className="text-left">
+            <span className="text-[10px] text-brand-taupe block font-semibold">Total ({totalItemsSelected} parts)</span>
+            <span className="text-brand-bronze font-black text-sm">${buildCost}</span>
+          </div>
+          <button
+            onClick={handleAddAllToCart}
+            className="px-4 py-2.5 rounded-xl bg-brand-bronze hover:bg-brand-bronze-hover text-brand-black text-xs font-extrabold flex items-center gap-1.5 shadow-md"
+          >
+            <ShoppingCart className="w-3.5 h-3.5" /> Add Build to Cart
+          </button>
+        </div>
+      )}
+
       {/* Part Selection Overlay Drawer Modal */}
       {activeSlot && (
         <div className="fixed inset-0 z-50 flex items-center justify-center px-4">

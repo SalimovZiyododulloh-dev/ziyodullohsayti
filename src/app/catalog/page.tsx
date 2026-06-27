@@ -14,6 +14,7 @@ export function CatalogContent() {
   const [loading, setLoading] = useState(true);
   const [realtime, setRealtime] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [showFiltersMobile, setShowFiltersMobile] = useState(false);
   
   // Filter States
   const [selectedCategory, setSelectedCategory] = useState<string>('');
@@ -171,8 +172,17 @@ export function CatalogContent() {
 
       {/* Catalog Grid Area */}
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 items-start">
+        {/* Toggle Filters Button for Mobile */}
+        <button
+          onClick={() => setShowFiltersMobile(!showFiltersMobile)}
+          className="lg:hidden w-full py-3 rounded-xl border border-brand-glass-border bg-brand-brown/10 hover:bg-brand-brown/20 text-brand-cream font-bold text-xs flex items-center justify-center gap-2 transition-all"
+        >
+          <SlidersHorizontal className="w-4 h-4 text-brand-bronze" />
+          {showFiltersMobile ? 'Hide Filters' : 'Show Filters'}
+        </button>
+
         {/* Sidebar Filters */}
-        <GlassCard className="lg:col-span-1 border-brand-glass-border space-y-6 !p-5">
+        <GlassCard className={`lg:col-span-1 border-brand-glass-border space-y-6 !p-5 ${showFiltersMobile ? 'block' : 'hidden lg:block'}`}>
           <div className="flex justify-between items-center pb-3 border-b border-brand-glass-border">
             <h3 className="font-bold text-sm text-brand-cream flex items-center gap-2">
               <SlidersHorizontal className="w-4 h-4 text-brand-bronze" /> Filters
